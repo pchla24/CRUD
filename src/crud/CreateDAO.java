@@ -5,18 +5,23 @@
  */
 package crud;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
 import entity.Rower;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
  * @author User
  */
-public class Create {
-    public static void main(String[] args) {
+public class CreateDAO {
+    
+    public CreateDAO() {
+    
+    }
+    
+    public void create(Rower bikeToCreate) {
+        
         SessionFactory factory = new Configuration()
                                 .configure("hibernate.cfg.xml")
                                 .addAnnotatedClass(Rower.class)
@@ -26,17 +31,15 @@ public class Create {
         
         try {
             System.out.println("Adding new bike");
-            Rower rower = new Rower("bikename", "bikebrand", "miejski", 80);
+            Rower rower = bikeToCreate;
             session.beginTransaction();
             session.save(rower);
             session.getTransaction().commit(); 
-            System.out.println("Bike added with id: " + rower.getId());
-            
+            System.out.println("Bike added");
         }
         finally {
             factory.close();
         }
-        
         
         
     }
