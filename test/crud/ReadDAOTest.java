@@ -20,12 +20,12 @@ import static org.junit.Assert.*;
  *
  * @author User
  */
-public class CreateDAOTest {
+public class ReadDAOTest {
     
     private SessionFactory factory;
     private Session session;
     
-    public CreateDAOTest() {
+    public ReadDAOTest() {
         
     }
     
@@ -43,21 +43,18 @@ public class CreateDAOTest {
     public void tearDown() {
         factory.close();
     }
-    
 
     /**
-     * Test of create method, of class CreateDAO.
+     * Test of read method, of class ReadDAO.
      */
     @Test
-    public void testCreate() {
-        System.out.println("create");
-        Rower bikeToCreate = new Rower("createNazwa", "createMarka", "createRodzaj", 60);
-        CreateDAO instance = new CreateDAO();
-        instance.create(bikeToCreate);
-        session.beginTransaction();
-        Rower retrivedBike = (Rower) session.get(Rower.class, bikeToCreate.getId());
-        session.getTransaction().commit();
-        assertEquals(bikeToCreate.toString(), retrivedBike.toString());
+    public void testRead() {
+        System.out.println("read");
+        int id = 1;
+        ReadDAO instance = new ReadDAO();
+        instance.read(id);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
