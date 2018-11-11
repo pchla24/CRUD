@@ -50,11 +50,13 @@ public class ReadDAOTest {
     @Test
     public void testRead() {
         System.out.println("read");
-        int id = 1;
+        Rower bikeToCreate = new Rower("readNazwa", "readMarka", "readRodzaj", 500);;
+        session.beginTransaction();
+        session.save(bikeToCreate);
+        session.getTransaction().commit(); 
         ReadDAO instance = new ReadDAO();
-        instance.read(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Rower retrivedBike = instance.read(bikeToCreate.getId());
+        assertEquals(bikeToCreate.toString(), retrivedBike.toString());
     }
     
 }

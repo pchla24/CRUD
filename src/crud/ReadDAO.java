@@ -20,7 +20,7 @@ public class ReadDAO {
     
     }
     
-    public void read(int id) {
+    public Rower read(int id) {
         
         SessionFactory factory = new Configuration()
                                 .configure("hibernate.cfg.xml")
@@ -36,6 +36,7 @@ public class ReadDAO {
             Rower retrivedBike = (Rower) session.get(Rower.class, id);
             session.getTransaction().commit();
             System.out.println("Retrived bike: " + retrivedBike);
+            return retrivedBike;
         }
         finally {
             factory.close();
